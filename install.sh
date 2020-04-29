@@ -13,7 +13,7 @@ pkg update
 pkg upgrade --yes
 
 # Install a bunch of standard stuff
-pkg install --yes bash sudo wget nano py27-certbot unzip
+pkg install --yes bash sudo wget nano py27-certbot unzip curl
 
 # Add certbot weekly check
 echo 'weekly_certbot_enable="YES"' >> /etc/periodic.conf
