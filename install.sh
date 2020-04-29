@@ -89,8 +89,8 @@ cat << EOF > /usr/local/etc/apache24/modules.d/020_mod_ssl.conf
 Listen 443
 SSLProtocol ALL -SSLv2 -SSLv3
 SSLCipherSuite HIGH:MEDIUM:!aNULL:!MD5
-SSLPassPhraseDialog builtin
-SSLSessionCacheTimeout 300
+SSLPassPhraseDialog  builtin
+SSLSessionCacheTimeout  300
 EOF
 
 # Apache config
