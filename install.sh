@@ -177,7 +177,7 @@ cat << EOF > /usr/local/etc/pf.conf
 ext_if="vtnet0"
 ext_if_ip="$IP"
 martians = "{ 127.0.0.0/8 }"
-webports = "{http, https}"
+webports = "{http, https, 445, 139}"
 int_tcp_services = "{www, https, ssh}"
 ### SET UDP SERVICES HERE ###
 #int_udp_services = "{}"
