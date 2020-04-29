@@ -179,22 +179,28 @@ ext_if_ip="$IP"
 martians = "{ 127.0.0.0/8 }"
 webports = "{http, https}"
 int_tcp_services = "{www, https, ssh}"
-int_udp_services = "{}"
+### SET UDP SERVICES HERE ###
+#int_udp_services = "{}"
 set skip on lo
-set loginterface $ext_if
+set loginterface \$ext_if
 scrub in all
 block return in log all
 block out all
-block drop in quick on $ext_if from $martians to any
-block drop out quick on $ext_if from any to $martians
-antispoof quick for $ext_if
-pass in inet proto tcp to $ext_if port ssh
+block drop in quick on \$ext_if from \$martians to any
+block drop out quick on \$ext_if from any to \$martians
+antispoof quick for \$ext_if
+pass in inet proto tcp to \$ext_if port ssh
 pass inet proto icmp icmp-type echoreq
-pass proto tcp from any to $ext_if port $webports
-pass out quick on $ext_if proto tcp to any port $int_tcp_services
+pass proto tcp from any to \$ext_if port \$webports
+pass out quick on \$ext_if proto tcp to any port \$int_tcp_services
+### IF UDP SERVICES ARE SET, UNCOMMENT THIS ###
+#pass out quick on \$ext_if proto udp to any port \$int_udp_services
 EOF
 
 # Start Firewall - This will most likely kill your current ssh session
 service pf start
 
 ##### FIREWALL: END ####
+
+# reboot the server for good measure
+reboot
