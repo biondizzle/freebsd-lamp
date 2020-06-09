@@ -1,6 +1,11 @@
 # freebsd-lamp
 some tools to quickly deploy lamp stack on freebsd
 
+install wget and nano
+```
+pkg install wget nano
+```
+
 download and open in nano
 ```
 wget --no-check-certificate https://raw.githubusercontent.com/biondizzle/freebsd-lamp/master/install.sh
