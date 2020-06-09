@@ -3,7 +3,7 @@ some tools to quickly deploy lamp stack on freebsd
 
 download and open in nano
 ```
-wget https://raw.githubusercontent.com/biondizzle/freebsd-lamp/master/install.sh
+wget --no-check-certificate https://raw.githubusercontent.com/biondizzle/freebsd-lamp/master/install.sh
 nano install.sh
 ```
 
