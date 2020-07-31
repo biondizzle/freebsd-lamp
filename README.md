@@ -1,9 +1,9 @@
 # freebsd-lamp
 some tools to quickly deploy lamp stack on freebsd
 
-install wget and nano
+install bash, wget, and nano
 ```
-pkg install wget nano
+pkg install bash wget nano
 ```
 
 download and open in nano
