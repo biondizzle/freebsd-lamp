@@ -13,7 +13,7 @@ pkg update
 pkg upgrade --yes
 
 # Install a bunch of standard stuff
-pkg install --yes bash sudo wget nano py27-certbot unzip curl
+pkg install --yes bash sudo wget nano py27-certbot unzip curl git
 
 # Add certbot weekly check
 echo 'weekly_certbot_enable="YES"' >> /etc/periodic.conf
@@ -28,9 +28,20 @@ rm mycron
 pkg install --yes apache24
 sysrc apache24_enable=yes
 
-# Install mariadb
-pkg install --yes mariadb102-server mariadb102-client
+# Install mariadb ... FreeBSD Deprecated MariaDB 10.2 which is the only good version, so we have to do it the stupid way now
+portsnap fetch
+portsnap extract
+portsnap update
+cd /usr/ports/databases/
+git clone https://github.com/biondizzle/mariadb102-server-freebsd.git
+git clone https://github.com/biondizzle/mariadb102-client-freebsd.git
+mv mariadb102-server-freebsd mariadb102-server
+mv mariadb102-client-freebsd mariadb102-client
+cd mariadb102-server
+make install clean
+cd
 sysrc mysql_enable="YES"
+
 
 # Configure MariaDB
 wget -O /usr/local/etc/my.cnf https://raw.githubusercontent.com/biondizzle/freebsd-lamp/master/my.conf
