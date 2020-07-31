@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/bin/bash
 
 # User Password
 user_name="ADD_YOUR_USERNAME_HERE"
@@ -15,12 +15,19 @@ pkg upgrade --yes
 # Install a bunch of standard stuff
 pkg install --yes bash sudo wget nano py27-certbot unzip curl git
 
+# Link bash
+ln -s /usr/local/bin/bash /bin/bash
+
 # Add certbot weekly check
 echo 'weekly_certbot_enable="YES"' >> /etc/periodic.conf
 
+# Certbot updater
+wget -O /usr/local/etc/renew-certs.sh https://raw.githubusercontent.com/biondizzle/freebsd-lamp/master/renew-certs.sh
+chmod +x /usr/local/etc/renew-certs.sh
+
 # Add Certbot checks to cron
 crontab -l > mycron
-echo "0 0 * * * /usr/local/bin/certbot-2.7 renew --quiet" >> mycron
+echo "0 0 * * * /usr/local/etc/renew-certs.sh > /dev/null 2>&1" >> mycron
 crontab mycron
 rm mycron
 
