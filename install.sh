@@ -4,6 +4,9 @@
 user_name="ADD_YOUR_USERNAME_HERE"
 user_password="ADD_YOUR_PASSWORD_HERE"
 
+# Resync passwords
+/usr/sbin/pwd_mkdb -p /etc/master.passwd
+
 # update freebsd
 echo "q" | freebsd-update fetch
 freebsd-update install
