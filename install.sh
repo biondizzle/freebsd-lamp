@@ -48,7 +48,7 @@ git clone https://github.com/biondizzle/mariadb102-client-freebsd.git
 mv mariadb102-server-freebsd mariadb102-server
 mv mariadb102-client-freebsd mariadb102-client
 cd mariadb102-server
-make install clean
+make -DBATCH install clean
 cd
 sysrc mysql_enable="YES"
 
